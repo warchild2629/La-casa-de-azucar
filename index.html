@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuestionario: La Casa de Azúcar - Silvina Ocampo</title>
+<style>
+:root {
+--bg-color: #f4f6f9;
+--card-bg: #ffffff;
+--primary: #4a6fa5;
+--primary-hover: #3b5984;
+--text-color: #333333;
+--border-color: #e0e0e0;
+--correct-bg: #d4edda;
+--correct-border: #c3e6cb;
+--correct-text: #155724;
+--incorrect-bg: #f8d7da;
+--incorrect-border: #f5c6cb;
+--incorrect-text: #721c24;
+}
+
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-color: var(--bg-color);
+color: var(--text-color);
+line-height: 1.6;
+margin: 0;
+padding: 20px;
+}
+
+.container {
+max-width: 800px;
+margin: 0 auto;
+background-color: var(--card-bg);
+padding: 30px;
+border-radius: 12px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+header {
+text-align: center;
+border-bottom: 2px solid var(--border-color);
+padding-bottom: 20px;
+margin-bottom: 30px;
+}
+
+h1 {
+color: var(--primary);
+margin-bottom: 10px;
+}
+
+.subtitle {
+font-style: italic;
+color: #666;
+}
+
+.question-card {
+background-color: #fafafa;
+border: 1px solid var(--border-color);
+border-radius: 8px;
+padding: 20px;
+margin-bottom: 25px;
+transition: all 0.3s ease;
+}
+
+.question-title {
+font-weight: 600;
+font-size: 1.1rem;
+margin-bottom: 15px;
+color: #2c3e50;
+}
+
+.options {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.option {
+display: flex;
+align-items: center;
+padding: 12px 15px;
+border: 1px solid var(--border-color);
+border-radius: 6px;
+background-color: #fff;
+cursor: pointer;
+transition: background-color 0.2s, border-color 0.2s;
+}
+
+.option:hover {
+background-color: #f0f4f8;
+border-color: var(--primary);
+}
+
+.option input[type="radio"] {
+margin-right: 12px;
+accent-color: var(--primary);
+}
+
+.btn-container {
+text-align: center;
+margin-top: 30px;
+}
+
+button {
+background-color: var(--primary);
+color: white;
+border: none;
+padding: 14px 28px;
+font-size: 1rem;
+font-weight: bold;
+border-radius: 6px;
+cursor: pointer;
+transition: background-color 0.2s ease;
+}
+
+button:hover {
+background-color: var(--primary-hover);
+}
+
+#result-container {
+display: none;
+margin-top: 30px;
+padding: 20px;
+border-radius: 8px;
+text-align: center;
+font-size: 1.2rem;
+font-weight: bold;
+}
+
+/* Clases para feedback de respuestas */
+.correct-answer {
+background-color: var(--correct-bg) !important;
+border-color: var(--correct-border) !important;
+color: var(--correct-text);
+}
+
+.incorrect-answer {
+background-color: var(--incorrect-bg) !important;
+border-color: var(--incorrect-border) !important;
+color: var(--incorrect-text);
+}
+
+.explanation {
+margin-top: 10px;
+font-size: 0.9rem;
+color: #555;
+display: none;
+padding: 8px;
+background-color: #fff;
+border-left: 3px solid var(--primary);
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<header>
+<h1>Cuestionario de Lectura</h1>
+<div class="subtitle">"La casa de azúcar" — Silvina Ocampo</div>
+</header>
+
+<form id="quiz-form">
+<!-- Pregunta 1 -->
+<div class="question-card" id="q1-card">
+<div class="question-title">1. ¿Cuál es la principal superstición de Cristina?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q1" value="A"> A) Le teme a los espejos y a los gatos negros.</label>
+<label class="option"><input type="radio" name="q1" value="B"> B) Evita estrenar ropa, casas o cosas que hayan pertenecido a personas desconocidas.</label>
+<label class="option"><input type="radio" name="q1" value="C"> C) No soporta los lugares cerrados sin luz solar.</label>
+<label class="option"><input type="radio" name="q1" value="D"> D) Se niega a salir de su casa durante los días de lluvia.</label>
+</div>
+<div class="explanation" id="exp-q1"></div>
+</div>
+
+<!-- Pregunta 2 -->
+<div class="question-card" id="q2-card">
+<div class="question-title">2. ¿Por qué la casa a la que se mudan es llamada "la casa de azúcar"?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q2" value="A"> A) Porque pertenecía a un comerciante de golosinas.</label>
+<label class="option"><input type="radio" name="q2" value="B"> B) Por su fachada blanca deslumbrante y detalles relucientes.</label>
+<label class="option"><input type="radio" name="q2" value="C"> C) Porque estaba construida sobre unos antiguos depósitos de azúcar.</label>
+<label class="option"><input type="radio" name="q2" value="D"> D) Por el dulce aroma a vainilla que había en su interior.</label>
+</div>
+<div class="explanation" id="exp-q2"></div>
+</div>
+
+<!-- Pregunta 3 -->
+<div class="question-card" id="q3-card">
+<div class="question-title">3. ¿Qué engaño comete el narrador (Heredia) al alquilar la casa?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q3" value="A"> A) Miente sobre el valor real del alquiler para quedarse con dinero.</label>
+<label class="option"><input type="radio" name="q3" value="B"> B) Le hace creer a Cristina que la casa es propia cuando en realidad es alquilada.</label>
+<label class="option"><input type="radio" name="q3" value="C"> C) Oculta que la casa ya había sido habitada antes por otra persona (Violeta).</label>
+<label class="option"><input type="radio" name="q3" value="D"> D) Le dice a Cristina que la casa fue diseñada por su propio hermano.</label>
+</div>
+<div class="explanation" id="exp-q3"></div>
+</div>
+
+<!-- Pregunta 4 -->
+<div class="question-card" id="q4-card">
+<div class="question-title">4. ¿Quién era la antigua inquilina de la casa?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q4" value="A"> A) Violeta</label>
+<label class="option"><input type="radio" name="q4" value="B"> B) Magdalena</label>
+<label class="option"><input type="radio" name="q4" value="C"> C) Irene</label>
+<label class="option"><input type="radio" name="q4" value="D"> D) Teresa</label>
+</div>
+<div class="explanation" id="exp-q4"></div>
+</div>
+
+<!-- Pregunta 5 -->
+<div class="question-card" id="q5-card">
+<div class="question-title">5. ¿Qué transformación progresiva empieza a experimentar Cristina en la casa?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q5" value="A"> A) Pierde el habla y la vista paulatinamente.</label>
+<label class="option"><input type="radio" name="q5" value="B"> B) Adopta los gustos, gestos y recuerdos de Violeta.</label>
+<label class="option"><input type="radio" name="q5" value="C"> C) Comienza a desarrollar un odio inexplicable hacia su esposo.</label>
+<label class="option"><input type="radio" name="q5" value="D"> D) Desarrolla un talento repentino para la pintura surrealista.</label>
+</div>
+<div class="explanation" id="exp-q5"></div>
+</div>
+
+<!-- Pregunta 6 -->
+<div class="question-card" id="q6-card">
+<div class="question-title">6. ¿Qué tema fantástico central de la obra de Silvina Ocampo se refleja principalmente en este cuento?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q6" value="A"> A) Los viajes en el tiempo a través de artefactos antiguos.</label>
+<label class="option"><input type="radio" name="q6" value="B"> B) La metamorfosis física de humanos en animales.</label>
+<label class="option"><input type="radio" name="q6" value="C"> C) El doble, la usurpación de identidad y la posesión.</label>
+<label class="option"><input type="radio" name="q6" value="D"> D) Las profecías bíblicas y el fin del mundo.</label>
+</div>
+<div class="explanation" id="exp-q6"></div>
+</div>
+
+<div class="btn-container">
+<button type="button" id="submit-btn" onclick="evaluateQuiz()">Enviar Respuestas</button>
+</div>
+</form>
+
+<div id="result-container"></div>
+</div>
+
+<script>
+const correctAnswers = {
+q1: { answer: "B", text: "Cristina creía obsesivamente que las cosas usadas o heredadas transmitían la suerte o el destino de sus anteriores dueños." },
+q2: { answer: "B", text: "La casa era totalmente blanca, brillante y limpia, lo que le daba el aspecto de estar hecha de azúcar." },
+q3: { answer: "C", text: "Sabiendo las supersticiones de Cristina, Heredia le miente diciéndole que la casa es totalmente nueva y a estrenar." },
+q4: { answer: "A", text: "La anterior inquilina era una mujer llamada Violeta." },
+q5: { answer: "B", text: "Cristina va asumiendo progresivamente la personalidad, hábitos y hasta los amantes de Violeta." },
+q6: { answer: "C", text: "El cuento aborda la figura del 'doble' y cómo la identidad de un personaje es paulatinamente usurpada o transferida a otro." }
+};
+
+function evaluateQuiz() {
+let score = 0;
+const totalQuestions = Object.keys(correctAnswers).length;
+const form = document.getElementById('quiz-form');
+
+for (let q in correctAnswers) {
+const selectedOption = form.querySelector(input[name="${q}"]:checked); const card = document.getElementById(``${q}-card);
+const expDiv = document.getElementById(exp-${q}`);
+
+// Limpiar clases previas
+const options = card.querySelectorAll('.option');
+options.forEach(opt => {
+opt.classList.remove('correct-answer', 'incorrect-answer');
+});
+
+if (selectedOption) {
+if (selectedOption.value === correctAnswers[q].answer) {
+score++;
+selectedOption.parentElement.classList.add('correct-answer');
+} else {
+selectedOption.parentElement.classList.add('incorrect-answer');
+// Marcar también la correcta para guiar al usuario
+options.forEach(opt => {
+const input = opt.querySelector('input');
+if (input.value === correctAnswers[q].answer) {
+opt.classList.add('correct-answer');
+}
+});
+}
+} else {
+// Si no contestó, señalar la correcta
+options.forEach(opt => {
+const input = opt.querySelector('input');
+if (input.value === correctAnswers[q].answer) {
+opt.classList.add('correct-answer');
+}
+});
+}
+
+expDiv.innerHTML = <strong&gt;Explicación:&lt;/strong&gt;${correctAnswers[q].text}`;
+expDiv.style.display = 'block';
+}
+
+// Mostrar resultados generales
+const resultContainer = document.getElementById('result-container');
+resultContainer.style.display = 'block';
+
+const percentage = (score / totalQuestions) * 100;
+let message = Obtuviste ${score} de ${totalQuestions} respuestas correctas (${percentage.toFixed(0)}%).&lt;br>;
+
+if (score === totalQuestions) {
+resultContainer.style.backgroundColor = 'var(--correct-bg)';
+resultContainer.style.color = 'var(--correct-text)';
+message += "¡Excelente! Conocés perfectamente el cuento de Silvina Ocampo.";
+} else if (score >= 3) {
+resultContainer.style.backgroundColor = '#fff3cd';
+resultContainer.style.color = '#856404';
+message += "¡Buen intento! Repasá algunos detalles clave de la trama.";
+} else {
+resultContainer.style.backgroundColor = 'var(--incorrect-bg)';
+resultContainer.style.color = 'var(--incorrect-text)';
+message += "Te recomendamos releer el relato para profundizar en los detalles.";
+}
+
+resultContainer.innerHTML = message;
+resultContainer.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
